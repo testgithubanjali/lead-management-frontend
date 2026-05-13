@@ -5,16 +5,6 @@ import toast from "react-hot-toast";
 
 const SOURCE_EMOJI = { Call: "📞", WhatsApp: "💬", Field: "🏃" };
 
-function StatusBadge({ status }) {
-  const cls = {
-    Interested: "badge-interested",
-    "Not Interested": "badge-not-interested",
-    Converted: "badge-converted",
-  }[status] || "badge-interested";
-  const dot = { Interested: "🔵", "Not Interested": "🔴", Converted: "🟢" }[status];
-  return <span className={`badge ${cls}`}>{dot} {status}</span>;
-}
-
 function SourceBadge({ source }) {
   const cls = { Call: "badge-call", WhatsApp: "badge-whatsapp", Field: "badge-field" }[source] || "";
   return (
@@ -30,7 +20,7 @@ function formatDate(dateStr) {
 }
 
 export default function LeadsList() {
-  const { leads, loading, fetchLeads, updateStatus, deleteLead, filters, setFilters } = useLeads();
+  const { leads, loading, fetchLeads, updateStatus, deleteLead, filters } = useLeads();
   const [search, setSearch] = useState(filters.search || "");
   const [statusFilter, setStatusFilter] = useState(filters.status || "");
   const [sourceFilter, setSourceFilter] = useState(filters.source || "");
